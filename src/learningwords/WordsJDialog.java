@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package learningwords;
 
 import java.util.HashMap;
@@ -17,7 +13,7 @@ import learningwords.enums.ViewTypeE;
  *
  * @author Andrz3j
  */
-public class WordsJDialog extends javax.swing.JDialog {
+public class WordsJDialog extends javax.swing.JFrame {
     
     private static BusinessLogic appLogic;
     public static WordsJDialog dialog;
@@ -25,7 +21,7 @@ public class WordsJDialog extends javax.swing.JDialog {
      * Creates new form WordsJDialog
      */
     public WordsJDialog(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+        //super(parent, modal); //required for JDialog (but here can't be used minimize/maximize buttons) 
         initComponents();
     }
 
@@ -47,7 +43,7 @@ public class WordsJDialog extends javax.swing.JDialog {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
         jButton1Approve = new javax.swing.JButton();
-        jLabel5MissedWords = new javax.swing.JLabel();
+        jLabel5MissingWords = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7IncorrectWords = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
@@ -69,6 +65,7 @@ public class WordsJDialog extends javax.swing.JDialog {
         jButton2Hide = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jFrontLayer.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
 
@@ -93,17 +90,17 @@ public class WordsJDialog extends javax.swing.JDialog {
         jLabel4.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 0, 0));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Missed words:");
+        jLabel4.setText("Missing words:");
         jLabel4.setAutoscrolls(true);
 
         jButton1Approve.setText("Approve");
 
-        jLabel5MissedWords.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        jLabel5MissedWords.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel5MissedWords.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel5MissedWords.setText("nasiono, pestka, zalążek");
-        jLabel5MissedWords.setAutoscrolls(true);
-        jLabel5MissedWords.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        jLabel5MissingWords.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel5MissingWords.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel5MissingWords.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel5MissingWords.setText("nasiono, pestka, zalążek");
+        jLabel5MissingWords.setAutoscrolls(true);
+        jLabel5MissingWords.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
         jLabel6.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 0, 0));
@@ -146,7 +143,7 @@ public class WordsJDialog extends javax.swing.JDialog {
                             .addGroup(jFrontLayerLayout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel5MissedWords, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel5MissingWords, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jFrontLayerLayout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -192,7 +189,7 @@ public class WordsJDialog extends javax.swing.JDialog {
                 .addGap(0, 0, 0)
                 .addGroup(jFrontLayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel5MissedWords))
+                    .addComponent(jLabel5MissingWords))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jFrontLayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -206,7 +203,7 @@ public class WordsJDialog extends javax.swing.JDialog {
         jFrontLayer.setLayer(jSeparator1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jFrontLayer.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jFrontLayer.setLayer(jButton1Approve, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jFrontLayer.setLayer(jLabel5MissedWords, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jFrontLayer.setLayer(jLabel5MissingWords, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jFrontLayer.setLayer(jLabel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jFrontLayer.setLayer(jLabel7IncorrectWords, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jFrontLayer.setLayer(jSeparator3, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -222,15 +219,15 @@ public class WordsJDialog extends javax.swing.JDialog {
         fromLanguageGroup.add(jRadioButton1Polish);
         jRadioButton1Polish.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jRadioButton1Polish.setSelected(true);
-        jRadioButton1Polish.setText("polish");
+        jRadioButton1Polish.setText("Polish");
 
         fromLanguageGroup.add(jRadioButton2English);
         jRadioButton2English.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jRadioButton2English.setText("english");
+        jRadioButton2English.setText("English");
 
         fromLanguageGroup.add(jRadioButton3Random);
         jRadioButton3Random.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jRadioButton3Random.setText("random");
+        jRadioButton3Random.setText("Random");
 
         jLabel9.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel9.setText("Show window after(h):");
@@ -466,7 +463,7 @@ public class WordsJDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3Solutions;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5MissedWords;
+    private javax.swing.JLabel jLabel5MissingWords;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7IncorrectWords;
     private javax.swing.JLabel jLabel8;

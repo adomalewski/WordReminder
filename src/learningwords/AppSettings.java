@@ -37,6 +37,9 @@ public class AppSettings {
         settingsFileName = "settings";
         suspendTimeInHours = 1;
         hideAfterSuccess = true;
+        
+        //should be that method instead of above part
+        loadSettingsFromFile();
     }
     
     public void applySettings() {

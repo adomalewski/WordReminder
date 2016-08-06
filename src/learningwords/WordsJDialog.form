@@ -7,6 +7,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -110,7 +111,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jLabel5MissedWords" min="-2" pref="147" max="-2" attributes="0"/>
+                                  <Component id="jLabel5MissingWords" min="-2" pref="147" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
@@ -169,7 +170,7 @@
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel5MissedWords" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel5MissingWords" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -231,7 +232,7 @@
               <Color blue="0" green="0" red="ff" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Missed words:"/>
+            <Property name="text" type="java.lang.String" value="Missing words:"/>
             <Property name="autoscrolls" type="boolean" value="true"/>
           </Properties>
         </Component>
@@ -240,7 +241,7 @@
             <Property name="text" type="java.lang.String" value="Approve"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel5MissedWords">
+        <Component class="javax.swing.JLabel" name="jLabel5MissingWords">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Calibri" size="14" style="1"/>
@@ -396,7 +397,7 @@
               <Font name="Calibri" size="14" style="0"/>
             </Property>
             <Property name="selected" type="boolean" value="true"/>
-            <Property name="text" type="java.lang.String" value="polish"/>
+            <Property name="text" type="java.lang.String" value="Polish"/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -410,7 +411,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Calibri" size="14" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="english"/>
+            <Property name="text" type="java.lang.String" value="English"/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -424,7 +425,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Calibri" size="14" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="random"/>
+            <Property name="text" type="java.lang.String" value="Random"/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
