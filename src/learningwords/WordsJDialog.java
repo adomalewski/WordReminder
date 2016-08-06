@@ -13,7 +13,7 @@ import learningwords.enums.ViewTypeE;
  *
  * @author Andrz3j
  */
-public class WordsJDialog extends javax.swing.JFrame {
+public class WordsJDialog extends javax.swing.JDialog {
     
     private static BusinessLogic appLogic;
     public static WordsJDialog dialog;
@@ -21,7 +21,7 @@ public class WordsJDialog extends javax.swing.JFrame {
      * Creates new form WordsJDialog
      */
     public WordsJDialog(java.awt.Frame parent, boolean modal) {
-        //super(parent, modal); //required for JDialog (but here can't be used minimize/maximize buttons) 
+        super(parent, modal);
         initComponents();
     }
 
