@@ -1,7 +1,9 @@
 package learningwords;
 
+import static learningwords.View.appLogic;
 import learningwords.enums.ViewTypeE;
 import learningwords.enums.DynamicViewElementE;
+import learningwords.enums.ElementActionE;
 
 public class ViewFront extends View {
     void showLayer() { WordsJDialog.jFrontLayer.show(); }
@@ -9,14 +11,20 @@ public class ViewFront extends View {
     
     @Override
     public void update() {
-        switch(appLogic.viewElemStateChange.viewLayersActions.get(ViewTypeE.FRONT)) {
-            case SHOW: showLayer(); break;
-            case HIDE: hideLayer(); break;
+        ElementActionE frontViewAction = appLogic.viewElemStateChange.viewLayersActions.get(ViewTypeE.FRONT);
+        if(frontViewAction != null) {
+            switch(frontViewAction) {
+                case SHOW: showLayer(); break;
+                case HIDE: hideLayer(); break;
+            }
         }
         
-        switch(appLogic.viewElemStateChange.dynamicVElemsActions.get(DynamicViewElementE.BTN_CHECK_NEXT)) {
-            case CHECK_NEXT: break;
-            case NEXT: break;
+        ElementActionE btnCheckNextAction = appLogic.viewElemStateChange.dynamicVElemsActions.get(DynamicViewElementE.BTN_CHECK_NEXT);
+        if(btnCheckNextAction != null) {
+            switch(btnCheckNextAction) {
+                case CHECK_NEXT: break;
+                case NEXT: break;
+            }
         }
     }
 }

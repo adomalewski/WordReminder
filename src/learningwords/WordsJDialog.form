@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
+<Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
     <Component class="javax.swing.ButtonGroup" name="fromLanguageGroup">
     </Component>
@@ -129,7 +129,7 @@
                           <Component id="jLabel3Solutions" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="jButton1Approve1" min="-2" pref="111" max="-2" attributes="0"/>
+                          <Component id="jButton1CheckNext" min="-2" pref="111" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="jButton1Approve" min="-2" pref="111" max="-2" attributes="0"/>
                       </Group>
@@ -163,7 +163,7 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jButton1Approve" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                      <Component id="jButton1Approve1" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="jButton1CheckNext" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                   <Component id="jSeparator1" min="-2" pref="11" max="-2" attributes="0"/>
@@ -240,6 +240,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Approve"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton1ApproveMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5MissingWords">
           <Properties>
@@ -304,10 +307,13 @@
             <Property name="autoscrolls" type="boolean" value="true"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton1Approve1">
+        <Component class="javax.swing.JButton" name="jButton1CheckNext">
           <Properties>
             <Property name="text" type="java.lang.String" value="Check &amp; Next"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton1CheckNextMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -475,6 +481,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Abort"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5AbortActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

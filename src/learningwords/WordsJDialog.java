@@ -1,10 +1,30 @@
 
 package learningwords;
 
+import java.awt.AWTException;
+import java.awt.EventQueue;
+import static java.awt.Frame.ICONIFIED;
+import static java.awt.Frame.MAXIMIZED_BOTH;
+import static java.awt.Frame.NORMAL;
+import java.awt.Image;
+import java.awt.MenuItem;
+import java.awt.PopupMenu;
+import java.awt.SystemTray;
+import java.awt.Toolkit;
+import java.awt.TrayIcon;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowStateListener;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import learningwords.enums.DynamicViewElementE;
 import learningwords.enums.ElementActionE;
 import learningwords.enums.ViewTypeE;
@@ -13,15 +33,23 @@ import learningwords.enums.ViewTypeE;
  *
  * @author Andrz3j
  */
-public class WordsJDialog extends javax.swing.JFrame {
+public class WordsJDialog extends JFrame {
     
     private static BusinessLogic appLogic;
+    
     public static WordsJDialog dialog;
+    private static TrayIcon trayIcon;
+    private static SystemTray tray;
+    
+    final private static String appName = "Word Reminder";
+    
+    final private static String appIconLocation = "icons/megaphone64x64.png";
+    final private static String trayIconLocation = "icons/megaphone16x16.png";
     /**
      * Creates new form WordsJDialog
      */
     public WordsJDialog(java.awt.Frame parent, boolean modal) {
-        //super(parent, modal); //required for JDialog (but here can't be used minimize/maximize buttons) 
+        super(appName);
         initComponents();
     }
 
@@ -49,7 +77,7 @@ public class WordsJDialog extends javax.swing.JFrame {
         jSeparator3 = new javax.swing.JSeparator();
         jLabel11 = new javax.swing.JLabel();
         jLabel12GuessWord = new javax.swing.JLabel();
-        jButton1Approve1 = new javax.swing.JButton();
+        jButton1CheckNext = new javax.swing.JButton();
         jSettingsLayer = new javax.swing.JLayeredPane();
         jLabel8 = new javax.swing.JLabel();
         jRadioButton1Polish = new javax.swing.JRadioButton();
@@ -94,6 +122,11 @@ public class WordsJDialog extends javax.swing.JFrame {
         jLabel4.setAutoscrolls(true);
 
         jButton1Approve.setText("Approve");
+        jButton1Approve.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1ApproveMouseClicked(evt);
+            }
+        });
 
         jLabel5MissingWords.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel5MissingWords.setForeground(new java.awt.Color(255, 0, 0));
@@ -125,7 +158,12 @@ public class WordsJDialog extends javax.swing.JFrame {
         jLabel12GuessWord.setText("Seed");
         jLabel12GuessWord.setAutoscrolls(true);
 
-        jButton1Approve1.setText("Check & Next");
+        jButton1CheckNext.setText("Check & Next");
+        jButton1CheckNext.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1CheckNextMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jFrontLayerLayout = new javax.swing.GroupLayout(jFrontLayer);
         jFrontLayer.setLayout(jFrontLayerLayout);
@@ -156,7 +194,7 @@ public class WordsJDialog extends javax.swing.JFrame {
                         .addGap(5, 5, 5)
                         .addComponent(jLabel3Solutions))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jFrontLayerLayout.createSequentialGroup()
-                        .addComponent(jButton1Approve1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton1CheckNext, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1Approve, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, 0))
@@ -183,7 +221,7 @@ public class WordsJDialog extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jFrontLayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1Approve, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1Approve1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton1CheckNext, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
@@ -209,7 +247,7 @@ public class WordsJDialog extends javax.swing.JFrame {
         jFrontLayer.setLayer(jSeparator3, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jFrontLayer.setLayer(jLabel11, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jFrontLayer.setLayer(jLabel12GuessWord, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jFrontLayer.setLayer(jButton1Approve1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jFrontLayer.setLayer(jButton1CheckNext, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jSettingsLayer.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
 
@@ -248,6 +286,11 @@ public class WordsJDialog extends javax.swing.JFrame {
         });
 
         jButton5Abort.setText("Abort");
+        jButton5Abort.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5AbortActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jSettingsLayerLayout = new javax.swing.GroupLayout(jSettingsLayer);
         jSettingsLayer.setLayout(jSettingsLayerLayout);
@@ -390,6 +433,21 @@ public class WordsJDialog extends javax.swing.JFrame {
         appLogic.notifyViews();
     }//GEN-LAST:event_jButton4ApplyMouseClicked
 
+    private void jButton5AbortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5AbortActionPerformed
+        appLogic.viewElemStateChange.viewLayersActions.put(ViewTypeE.SETTINGS, ElementActionE.HIDE);
+        appLogic.viewElemStateChange.viewLayersActions.put(ViewTypeE.FRONT, ElementActionE.SHOW);
+        appLogic.viewElemStateChange.dynamicVElemsActions.put(DynamicViewElementE.BTN_SETTINGS, ElementActionE.SHOW);
+        appLogic.notifyViews();
+    }//GEN-LAST:event_jButton5AbortActionPerformed
+
+    private void jButton1CheckNextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1CheckNextMouseClicked
+        
+    }//GEN-LAST:event_jButton1CheckNextMouseClicked
+
+    private void jButton1ApproveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1ApproveMouseClicked
+        
+    }//GEN-LAST:event_jButton1ApproveMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -409,40 +467,113 @@ public class WordsJDialog extends javax.swing.JFrame {
             Map.Entry me = (Map.Entry)it.next();
             appLogic.addView((View)me.getValue());
         }
-        /* Set the Nimbus look and feel */
+        /* Set look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            /*for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
-            }
+            }*/
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(WordsJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            Logger.getLogger(WordsJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(WordsJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            Logger.getLogger(WordsJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(WordsJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(WordsJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            Logger.getLogger(WordsJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(WordsJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+        /* Create and display the dialog or frame */
+        EventQueue.invokeLater(new Runnable() {
             public void run() {
-                dialog = new WordsJDialog(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
+                createAndShowGUI();
+                createTraySupport4App();
+            }
+        });
+    }
+    
+    private static void createAndShowGUI() {
+        dialog = new WordsJDialog(new JFrame(), true);
+        dialog.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                System.exit(0);
+            }
+        });
+        dialog.setLocationRelativeTo(null);
+        dialog.setIconImage(Toolkit.getDefaultToolkit().getImage(appIconLocation)); 
+        dialog.setVisible(true);
+        
+        appLogic.viewElemStateChange.viewLayersActions.put(ViewTypeE.SETTINGS, ElementActionE.HIDE);
+        appLogic.notifyViews();
+    }
+    
+    private static void createTraySupport4App() {
+        if(SystemTray.isSupported()){
+            tray = SystemTray.getSystemTray();
+
+            Image image4Tray = Toolkit.getDefaultToolkit().getImage(trayIconLocation);
+            PopupMenu popupTray = new PopupMenu();
+
+            MenuItem trayMenuItem = new MenuItem("Open");
+            ActionListener openWindowAction = new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    dialog.setVisible(true);
+                    dialog.setExtendedState(JFrame.NORMAL);
+                }
+            };
+            trayMenuItem.addActionListener(openWindowAction);
+            popupTray.add(trayMenuItem);
+
+            trayMenuItem = new MenuItem("Exit");
+            ActionListener exitListener = new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    System.exit(0);
+                }
+            };
+            trayMenuItem.addActionListener(exitListener);
+            popupTray.add(trayMenuItem);
+
+            trayIcon = new TrayIcon(image4Tray, appName, popupTray);
+            trayIcon.setImageAutoSize(true);
+            trayIcon.addActionListener(openWindowAction);
+        }else{
+            System.out.println("System tray not supported");
+        }
+        dialog.addWindowStateListener(new WindowStateListener() {
+            public void windowStateChanged(WindowEvent e) {
+                if(e.getNewState() == ICONIFIED) {
+                    try {
+                        tray.add(trayIcon);
+                        dialog.setVisible(false);
+                    } catch (AWTException ex) {
+                        System.out.println("Unable to add to tray");
                     }
-                });
-                dialog.setVisible(true);
+                }
+                if(e.getNewState() == 7) {
+                    try{
+                        tray.add(trayIcon);
+                        dialog.setVisible(false);
+                    }catch(AWTException ex) {
+                        System.out.println("Unable to add to system tray");
+                    }
+                }
+                if(e.getNewState() == MAXIMIZED_BOTH) {
+                    tray.remove(trayIcon);
+                    dialog.setVisible(true);
+                }
+                if(e.getNewState() == NORMAL) {
+                    tray.remove(trayIcon);
+                    dialog.setVisible(true);
+                }
             }
         });
     }
@@ -450,7 +581,7 @@ public class WordsJDialog extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup fromLanguageGroup;
     private javax.swing.JButton jButton1Approve;
-    private javax.swing.JButton jButton1Approve1;
+    private javax.swing.JButton jButton1CheckNext;
     private javax.swing.JButton jButton2Hide;
     public static javax.swing.JButton jButton3Settings;
     private javax.swing.JButton jButton4Apply;

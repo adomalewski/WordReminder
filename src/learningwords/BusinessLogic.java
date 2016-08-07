@@ -11,6 +11,7 @@ public class BusinessLogic {
     public ViewElementsStateChange viewElemStateChange;
     private List<View> views;
     private Timer hideAppTimer;
+    
     final private static int msInHour = 60*60*1000;
     
     public BusinessLogic() {
@@ -26,7 +27,7 @@ public class BusinessLogic {
 
         if(displayingApp == false) {
             if(hideAppTimer != null)
-                hideAppTimer.cancel();
+                hideAppTimer.purge();
             
             hideAppTimer.schedule(new TimerTask() {
                 @Override

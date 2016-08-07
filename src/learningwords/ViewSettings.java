@@ -1,5 +1,7 @@
 package learningwords;
 
+import learningwords.enums.DynamicViewElementE;
+import learningwords.enums.ElementActionE;
 import learningwords.enums.ViewTypeE;
 
 public class ViewSettings extends View {
@@ -8,7 +10,11 @@ public class ViewSettings extends View {
     
     @Override
     public void update() {
-        switch(appLogic.viewElemStateChange.viewLayersActions.get(ViewTypeE.SETTINGS)) {
+        ElementActionE settingsViewAction = appLogic.viewElemStateChange.viewLayersActions.get(ViewTypeE.SETTINGS);
+        if(settingsViewAction == null)
+            return;
+        
+        switch(settingsViewAction) {
             case SHOW: showLayer(); break;
             case HIDE: hideLayer(); break;
         }
