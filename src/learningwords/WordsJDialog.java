@@ -17,17 +17,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowStateListener;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import learningwords.enums.DynamicViewElementE;
-import learningwords.enums.ElementActionE;
-import learningwords.enums.ViewTypeE;
 
 /**
  *
@@ -413,31 +406,19 @@ public class WordsJDialog extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3SettingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3SettingsMouseClicked
-        appLogic.viewElemStateChange.viewLayersActions.put(ViewTypeE.SETTINGS, ElementActionE.SHOW);
-        appLogic.viewElemStateChange.viewLayersActions.put(ViewTypeE.FRONT, ElementActionE.HIDE);
-        appLogic.viewElemStateChange.dynamicVElemsActions.put(DynamicViewElementE.BTN_SETTINGS, ElementActionE.HIDE);
-        appLogic.notifyViews();
+        appLogic.showSettings();
     }//GEN-LAST:event_jButton3SettingsMouseClicked
 
     private void jButton2HideMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2HideMouseClicked
-        appLogic.changeDisplayingApp(false);
-        appLogic.viewElemStateChange.viewLayersActions.put(ViewTypeE.APPLICATION, ElementActionE.HIDE);
-        appLogic.notifyViews();
+        appLogic.hideApplication();
     }//GEN-LAST:event_jButton2HideMouseClicked
 
     private void jButton4ApplyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4ApplyMouseClicked
-        appLogic.appSettings.applySettings();
-        appLogic.viewElemStateChange.viewLayersActions.put(ViewTypeE.SETTINGS, ElementActionE.HIDE);
-        appLogic.viewElemStateChange.viewLayersActions.put(ViewTypeE.FRONT, ElementActionE.SHOW);
-        appLogic.viewElemStateChange.dynamicVElemsActions.put(DynamicViewElementE.BTN_SETTINGS, ElementActionE.SHOW);
-        appLogic.notifyViews();
+        appLogic.applySettings();
     }//GEN-LAST:event_jButton4ApplyMouseClicked
 
     private void jButton5AbortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5AbortActionPerformed
-        appLogic.viewElemStateChange.viewLayersActions.put(ViewTypeE.SETTINGS, ElementActionE.HIDE);
-        appLogic.viewElemStateChange.viewLayersActions.put(ViewTypeE.FRONT, ElementActionE.SHOW);
-        appLogic.viewElemStateChange.dynamicVElemsActions.put(DynamicViewElementE.BTN_SETTINGS, ElementActionE.SHOW);
-        appLogic.notifyViews();
+        appLogic.abortSettings();
     }//GEN-LAST:event_jButton5AbortActionPerformed
 
     private void jButton1CheckNextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1CheckNextMouseClicked
@@ -452,21 +433,12 @@ public class WordsJDialog extends JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        appLogic = new BusinessLogic();
-        View.setModel(appLogic);
-        
-        Map<ViewTypeE, View> appViewsMap = new HashMap<>();
-        appViewsMap.put(ViewTypeE.APPLICATION, new ViewApplication());
-        appViewsMap.put(ViewTypeE.FRONT, new ViewFront());
-        appViewsMap.put(ViewTypeE.TOP_BAR, new ViewTopBar());
-        appViewsMap.put(ViewTypeE.SETTINGS, new ViewSettings());
-        
-        Set set = appViewsMap.entrySet();
-        Iterator it = set.iterator();
-        while(it.hasNext()) {
-            Map.Entry me = (Map.Entry)it.next();
-            appLogic.addView((View)me.getValue());
-        }
+        appLogic = new BusinessLogic(
+                new ViewApplication(),
+                new ViewFront(),
+                new ViewSettings(),
+                new ViewTopBar());
+
         /* Set look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -512,8 +484,7 @@ public class WordsJDialog extends JFrame {
         dialog.setIconImage(Toolkit.getDefaultToolkit().getImage(appIconLocation)); 
         dialog.setVisible(true);
         
-        appLogic.viewElemStateChange.viewLayersActions.put(ViewTypeE.SETTINGS, ElementActionE.HIDE);
-        appLogic.notifyViews();
+        appLogic.startApp();
     }
     
     private static void createTraySupport4App() {
