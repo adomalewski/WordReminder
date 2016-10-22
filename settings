@@ -1,0 +1,8 @@
+#options: random, english, polish
+fromLanguageMethod polish
+
+#time in minutes
+suspendTime 60
+
+#hide application after given correct answer
+hideAfterSuccess true

@@ -62,10 +62,10 @@ public class WordsJDialog extends JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3Solutions = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel4 = new javax.swing.JLabel();
+        jLabel4MissingStatic = new javax.swing.JLabel();
         jButton1Approve = new javax.swing.JButton();
         jLabel5MissingWords = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        jLabel6IncorrectStatic = new javax.swing.JLabel();
         jLabel7IncorrectWords = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
         jLabel11 = new javax.swing.JLabel();
@@ -108,36 +108,36 @@ public class WordsJDialog extends JFrame {
         jLabel3Solutions.setText("3");
         jLabel3Solutions.setAutoscrolls(true);
 
-        jLabel4.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Missing words:");
-        jLabel4.setAutoscrolls(true);
+        jLabel4MissingStatic.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel4MissingStatic.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel4MissingStatic.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4MissingStatic.setText("Missing words:");
+        jLabel4MissingStatic.setAutoscrolls(true);
 
         jButton1Approve.setText("Approve");
-        jButton1Approve.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1ApproveMouseClicked(evt);
+        jButton1Approve.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ApproveActionPerformed(evt);
             }
         });
 
         jLabel5MissingWords.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel5MissingWords.setForeground(new java.awt.Color(255, 0, 0));
         jLabel5MissingWords.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel5MissingWords.setText("nasiono, pestka, zalÄ…Å¼ek");
+        jLabel5MissingWords.setText("nasiono, pestka, zal¹¿ek");
         jLabel5MissingWords.setAutoscrolls(true);
         jLabel5MissingWords.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
-        jLabel6.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Incorrect words:");
-        jLabel6.setAutoscrolls(true);
+        jLabel6IncorrectStatic.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel6IncorrectStatic.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel6IncorrectStatic.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6IncorrectStatic.setText("Incorrect words:");
+        jLabel6IncorrectStatic.setAutoscrolls(true);
 
         jLabel7IncorrectWords.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel7IncorrectWords.setForeground(new java.awt.Color(255, 0, 0));
         jLabel7IncorrectWords.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel7IncorrectWords.setText("strzelaÄ‡, chodziÄ‡");
+        jLabel7IncorrectWords.setText("strzelaæ, chodziæ");
         jLabel7IncorrectWords.setAutoscrolls(true);
         jLabel7IncorrectWords.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
@@ -152,9 +152,9 @@ public class WordsJDialog extends JFrame {
         jLabel12GuessWord.setAutoscrolls(true);
 
         jButton1CheckNext.setText("Check & Next");
-        jButton1CheckNext.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1CheckNextMouseClicked(evt);
+        jButton1CheckNext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1CheckNextActionPerformed(evt);
             }
         });
 
@@ -168,19 +168,6 @@ public class WordsJDialog extends JFrame {
                     .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jTextField1UserTranslation)
                     .addComponent(jLabel12GuessWord, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jFrontLayerLayout.createSequentialGroup()
-                        .addGroup(jFrontLayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addGroup(jFrontLayerLayout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel5MissingWords, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jFrontLayerLayout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel7IncorrectWords, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel11))
-                        .addGap(0, 240, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jFrontLayerLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel2)
@@ -189,7 +176,20 @@ public class WordsJDialog extends JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jFrontLayerLayout.createSequentialGroup()
                         .addComponent(jButton1CheckNext, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1Approve, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton1Approve, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jFrontLayerLayout.createSequentialGroup()
+                        .addGroup(jFrontLayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel11))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jFrontLayerLayout.createSequentialGroup()
+                        .addComponent(jLabel4MissingStatic)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel5MissingWords, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jFrontLayerLayout.createSequentialGroup()
+                        .addComponent(jLabel6IncorrectStatic)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel7IncorrectWords, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, 0))
         );
         jFrontLayerLayout.setVerticalGroup(
@@ -219,11 +219,11 @@ public class WordsJDialog extends JFrame {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addGroup(jFrontLayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
+                    .addComponent(jLabel4MissingStatic)
                     .addComponent(jLabel5MissingWords))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jFrontLayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
+                    .addComponent(jLabel6IncorrectStatic)
                     .addComponent(jLabel7IncorrectWords))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -232,10 +232,10 @@ public class WordsJDialog extends JFrame {
         jFrontLayer.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jFrontLayer.setLayer(jLabel3Solutions, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jFrontLayer.setLayer(jSeparator1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jFrontLayer.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jFrontLayer.setLayer(jLabel4MissingStatic, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jFrontLayer.setLayer(jButton1Approve, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jFrontLayer.setLayer(jLabel5MissingWords, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jFrontLayer.setLayer(jLabel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jFrontLayer.setLayer(jLabel6IncorrectStatic, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jFrontLayer.setLayer(jLabel7IncorrectWords, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jFrontLayer.setLayer(jSeparator3, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jFrontLayer.setLayer(jLabel11, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -261,10 +261,10 @@ public class WordsJDialog extends JFrame {
         jRadioButton3Random.setText("Random");
 
         jLabel9.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jLabel9.setText("Show window after(h):");
+        jLabel9.setText("Show window after(min):");
 
         jTextField2SuspendTime.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField2SuspendTime.setText("1");
+        jTextField2SuspendTime.setText("60");
 
         jCheckBox1HideAfterSuccess.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jCheckBox1HideAfterSuccess.setSelected(true);
@@ -272,9 +272,9 @@ public class WordsJDialog extends JFrame {
         jCheckBox1HideAfterSuccess.setMargin(new java.awt.Insets(2, 0, 2, 2));
 
         jButton4Apply.setText("Apply");
-        jButton4Apply.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton4ApplyMouseClicked(evt);
+        jButton4Apply.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ApplyActionPerformed(evt);
             }
         });
 
@@ -343,16 +343,16 @@ public class WordsJDialog extends JFrame {
         jSettingsLayer.setLayer(jButton5Abort, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButton3Settings.setText("Settings");
-        jButton3Settings.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton3SettingsMouseClicked(evt);
+        jButton3Settings.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3SettingsActionPerformed(evt);
             }
         });
 
         jButton2Hide.setText("Hide");
-        jButton2Hide.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2HideMouseClicked(evt);
+        jButton2Hide.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2HideActionPerformed(evt);
             }
         });
 
@@ -405,29 +405,29 @@ public class WordsJDialog extends JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3SettingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3SettingsMouseClicked
-        appLogic.showSettings();
-    }//GEN-LAST:event_jButton3SettingsMouseClicked
-
-    private void jButton2HideMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2HideMouseClicked
-        appLogic.hideApplication();
-    }//GEN-LAST:event_jButton2HideMouseClicked
-
-    private void jButton4ApplyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4ApplyMouseClicked
-        appLogic.applySettings();
-    }//GEN-LAST:event_jButton4ApplyMouseClicked
-
     private void jButton5AbortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5AbortActionPerformed
         appLogic.abortSettings();
     }//GEN-LAST:event_jButton5AbortActionPerformed
 
-    private void jButton1CheckNextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1CheckNextMouseClicked
-        
-    }//GEN-LAST:event_jButton1CheckNextMouseClicked
+    private void jButton1ApproveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ApproveActionPerformed
+        appLogic.approveUserAnswer();
+    }//GEN-LAST:event_jButton1ApproveActionPerformed
 
-    private void jButton1ApproveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1ApproveMouseClicked
-        
-    }//GEN-LAST:event_jButton1ApproveMouseClicked
+    private void jButton1CheckNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1CheckNextActionPerformed
+        appLogic.checkNextButtonMechanism();
+    }//GEN-LAST:event_jButton1CheckNextActionPerformed
+
+    private void jButton4ApplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ApplyActionPerformed
+        appLogic.applySettings();
+    }//GEN-LAST:event_jButton4ApplyActionPerformed
+
+    private void jButton2HideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2HideActionPerformed
+        appLogic.hideApplication();
+    }//GEN-LAST:event_jButton2HideActionPerformed
+
+    private void jButton3SettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3SettingsActionPerformed
+        appLogic.showSettings();
+    }//GEN-LAST:event_jButton3SettingsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -497,8 +497,7 @@ public class WordsJDialog extends JFrame {
             MenuItem trayMenuItem = new MenuItem("Open");
             ActionListener openWindowAction = new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    dialog.setVisible(true);
-                    dialog.setExtendedState(JFrame.NORMAL);
+                    appLogic.prepareShowApp();
                 }
             };
             trayMenuItem.addActionListener(openWindowAction);
@@ -539,11 +538,11 @@ public class WordsJDialog extends JFrame {
                 }
                 if(e.getNewState() == MAXIMIZED_BOTH) {
                     tray.remove(trayIcon);
-                    dialog.setVisible(true);
+                    appLogic.prepareShowApp();
                 }
                 if(e.getNewState() == NORMAL) {
                     tray.remove(trayIcon);
-                    dialog.setVisible(true);
+                    appLogic.prepareShowApp();
                 }
             }
         });
@@ -551,8 +550,8 @@ public class WordsJDialog extends JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup fromLanguageGroup;
-    private javax.swing.JButton jButton1Approve;
-    private javax.swing.JButton jButton1CheckNext;
+    public static javax.swing.JButton jButton1Approve;
+    public static javax.swing.JButton jButton1CheckNext;
     private javax.swing.JButton jButton2Hide;
     public static javax.swing.JButton jButton3Settings;
     private javax.swing.JButton jButton4Apply;
@@ -561,13 +560,13 @@ public class WordsJDialog extends JFrame {
     public static javax.swing.JLayeredPane jFrontLayer;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12GuessWord;
+    public static javax.swing.JLabel jLabel12GuessWord;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3Solutions;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5MissingWords;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7IncorrectWords;
+    public static javax.swing.JLabel jLabel3Solutions;
+    public static javax.swing.JLabel jLabel4MissingStatic;
+    public static javax.swing.JLabel jLabel5MissingWords;
+    public static javax.swing.JLabel jLabel6IncorrectStatic;
+    public static javax.swing.JLabel jLabel7IncorrectWords;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     public static javax.swing.JRadioButton jRadioButton1Polish;
@@ -577,7 +576,7 @@ public class WordsJDialog extends JFrame {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     public static javax.swing.JLayeredPane jSettingsLayer;
-    private javax.swing.JTextField jTextField1UserTranslation;
+    public static javax.swing.JTextField jTextField1UserTranslation;
     public static javax.swing.JTextField jTextField2SuspendTime;
     // End of variables declaration//GEN-END:variables
 }
