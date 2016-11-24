@@ -3,11 +3,11 @@ package learningwords;
 import java.util.Collections;
 import java.util.List;
 import java.util.ListIterator;
-import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 import javafx.util.Pair;
 import learningwords.enums.LanguageE;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class BusinessLogic {
     protected AppSettings appSettings;
@@ -217,10 +217,9 @@ public class BusinessLogic {
     }
     
     private void chooseAskLanguage() {
-        Random rand = new Random();
         switch(appSettings.fromLanguageMethod) {
             case RANDOM:
-                if(rand.nextInt(500)%2 == 0)
+                if(ThreadLocalRandom.current().nextInt(500)%2 == 0)
                     appSettings.wordLanguage = LanguageE.ENGLISH;
                 else
                     appSettings.wordLanguage = LanguageE.POLISH;
@@ -231,9 +230,8 @@ public class BusinessLogic {
     }
     
     private void chooseWordAndSolutions() {
-        Random rand = new Random();
         if(appSettings.wordLanguage == LanguageE.ENGLISH) {
-            int index = rand.nextInt(appSettings.wordsDataList.size());
+            int index = ThreadLocalRandom.current().nextInt(appSettings.wordsDataList.size());
             appSettings.chosenWord = appSettings.wordsDataList.get(index).getKey();
             
             appSettings.solutionList.clear();
@@ -242,8 +240,9 @@ public class BusinessLogic {
                     appSettings.solutionList.addAll(record.getValue());
         }
         else {
-            int recordIndex = rand.nextInt(appSettings.wordsDataList.size());
-            int index = rand.nextInt(appSettings.wordsDataList.get(recordIndex).getValue().size());
+            int recordIndex = ThreadLocalRandom.current().nextInt(appSettings.wordsDataList.size());
+            int index = ThreadLocalRandom.current().nextInt(
+                appSettings.wordsDataList.get(recordIndex).getValue().size());
             appSettings.chosenWord = appSettings.wordsDataList.get(recordIndex).getValue().get(index);
 
             appSettings.solutionList.clear();
